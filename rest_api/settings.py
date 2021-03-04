@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-SECLET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'api.apps.ApiConfig'
+    'api.apps.ApiConfig',
     'djoser',
     'corsheaders',
 ]
@@ -49,7 +49,7 @@ CORS_ORIGIN_WHITELIST = [
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(minute=60)
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60)
 }
 
 REST_FRAMEWORK = {
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'rest_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-default_dburl = 'sqlite:///'+str(BASEDIR / "db.sqlite3")
+default_dburl = 'sqlite:///'+str(BASE_DIR / "db.sqlite3")
 DATABASES = {'default': config(
     'DATABASE_URL', default=default_dburl, cast=dburl)}
 
