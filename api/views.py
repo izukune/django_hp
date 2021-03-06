@@ -1,13 +1,13 @@
-from rest_framework.permission import AllowAny
+from rest_framework.permissions import AllowAny
 from rest_framework import generics
-from rest_frameworl import viewsets
+from rest_framework import viewsets
 from .serializers import TaskSerializer, UserSerializer, PostSerializer
 from .models import Task, Post
 
 
 class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = (AllowAny)
 
 
 class PostListView(generics.ListAPIView):
