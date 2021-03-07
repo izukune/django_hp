@@ -2,19 +2,11 @@ from pathlib import Path
 from datetime import timedelta
 from decouple import config
 from dj_database_url import parse as dburl
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG')
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -28,8 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api.apps.ApiConfig',
-    'djoser',
     'corsheaders',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -42,14 +34,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
+    "http://localhost:3000"
 ]
-
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60)
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
 }
 
 REST_FRAMEWORK = {
@@ -85,9 +75,11 @@ WSGI_APPLICATION = 'rest_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-default_dburl = 'sqlite:///'+str(BASE_DIR / "db.sqlite3")
-DATABASES = {'default': config(
-    'DATABASE_URL', default=default_dburl, cast=dburl)}
+default_dburl = 'sqlite:///' + str(BASE_DIR / "db.sqlite3")
+
+DATABASES = {
+    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
+}
 
 
 # Password validation
@@ -127,4 +119,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = str(BASE_DIR/'staticfiles')
+STATIC_ROOT = str(BASE_DIR / 'staticfiles')
